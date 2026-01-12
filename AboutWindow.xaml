@@ -1,0 +1,96 @@
+<Window x:Class="SimpleCheck.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="关于"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Width="460" Height="480">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="WindowBackground" Color="#FDFDF9" />
+        <SolidColorBrush x:Key="PanelBackground" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="AccentColor" Color="#5A8B7E" />
+        <SolidColorBrush x:Key="TextColor" Color="#333333" />
+        <SolidColorBrush x:Key="TextLightColor" Color="#888888" />
+        <SolidColorBrush x:Key="BorderColor" Color="#EFEFEF" />
+    </Window.Resources>
+
+    <Border Background="{StaticResource WindowBackground}" CornerRadius="16" Margin="10">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="30" ShadowDepth="5" Opacity="0.2" Color="#334433"/>
+        </Border.Effect>
+
+        <Grid>
+            <Button Click="Close_Click" HorizontalAlignment="Right" VerticalAlignment="Top" 
+                    Width="40" Height="40" Margin="0,10,10,0"
+                    Background="Transparent" BorderThickness="0" Cursor="Hand" Panel.ZIndex="100">
+                <TextBlock Text="✕" FontSize="18" Foreground="{StaticResource TextLightColor}" FontWeight="Bold"/>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#10000000"/>
+                                <Setter Property="Foreground" Value="#FF6B6B"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Grid Margin="30">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="关于" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextColor}" Margin="0,0,0,20"/>
+
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    
+                    <Border Width="80" Height="80" CornerRadius="20" 
+                            HorizontalAlignment="Center" Margin="10,20,10,20">
+                        
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="15" Color="#5A8B7E" Opacity="0.3" ShadowDepth="3"/>
+                        </Border.Effect>
+
+                        <Border.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/Resources/appicon.png" 
+                                        Stretch="UniformToFill" 
+                                        RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Border.Background>
+                    </Border>
+
+                    <TextBlock Text="Simple Check" FontSize="24" FontWeight="Bold" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                    <TextBlock Text="Version 1.0.0" FontSize="14" Foreground="{StaticResource TextLightColor}" HorizontalAlignment="Center" Margin="0,0,0,30"/>
+
+                    <Border Background="{StaticResource PanelBackground}" CornerRadius="12" BorderBrush="{StaticResource BorderColor}" BorderThickness="1" Padding="20">
+                        <StackPanel>
+                            <TextBlock Text="Developed by 聿修" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                            <TextBlock Text="希望这款小工具能帮助你更好地规划每一天，保持专注，享受生活。" 
+                                       FontSize="13" Foreground="#666666" TextWrapping="Wrap" TextAlignment="Center" LineHeight="20" Margin="0,0,0,15"/>
+                            
+                            <TextBlock HorizontalAlignment="Center">
+                                <Hyperlink NavigateUri="https://github.com/KittyClub-Yuxiu/SimpleCheck/" RequestNavigate="Hyperlink_RequestNavigate" TextDecorations="None" Foreground="{StaticResource AccentColor}">
+                                    <TextBlock Text="访问 GitHub 仓库" FontWeight="Medium"/>
+                                </Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+                
+                <TextBlock Grid.Row="2" Text="© 2026 Kittyclub. All rights reserved." FontSize="11" Foreground="#CCCCCC" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
